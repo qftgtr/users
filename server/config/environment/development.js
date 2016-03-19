@@ -3,6 +3,11 @@
 // Development specific configuration
 // ==================================
 module.exports = {
+  // Session store options
+  session: {
+    store: 'Redis',
+    client: 'redis://192.168.99.100:6379'
+  },
 
   // MongoDB connection options
   mongo: {

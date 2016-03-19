@@ -32,6 +32,13 @@ var all = {
     session: 'users-secret'
   },
 
+  // Session store options
+  session: {
+    store: process.env.SESSION_STORE,//'Redis',
+    client: process.env.REDIS_URI,
+    ttl: 86400,
+  },
+
   // MongoDB connection options
   mongo: {
     options: {
