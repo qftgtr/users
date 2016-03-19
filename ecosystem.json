@@ -1,0 +1,28 @@
+{
+  apps: [
+    {
+      name: "users",
+      script: "server/index.js",
+      env: {
+        COMMON_VARIABLE: "true"
+      },
+      env_production : {
+        NODE_ENV: "production",
+        MONGO_URI: "172.17.0.7:27017/users",
+        SESSION_STORE: "Redis",
+        REDIS_URI: "redis://172.17.0.8:6379"
+      }
+    }
+  ],
+  deploy: {
+    production : {
+      key: "/Users/q/.ssh/id_rsa.pem",
+      user: "root",
+      host: "162.243.48.133",
+      ref: "origin/master",
+      repo: "https://github.com/qftgtr/users.git",
+      path: "/var/www/users",
+      "post-deploy": "pwd;cd dist;npm install --production;pm2 startOrRestart ../ecosystem.json --env production"
+    }
+  }
+}
