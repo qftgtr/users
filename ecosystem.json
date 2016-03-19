@@ -8,6 +8,7 @@
       },
       env_production : {
         NODE_ENV: "production",
+        PORT: 8000,
         MONGO_URI: "172.17.0.7:27017/users",
         SESSION_STORE: "Redis",
         REDIS_URI: "redis://172.17.0.8:6379"
