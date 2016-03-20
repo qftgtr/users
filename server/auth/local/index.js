@@ -20,10 +20,12 @@ router.post('/', function(req, res, next) {
     user.salt = undefined;
     var token = signToken(user._id, user.role);
 
-    if (req.session) {
-      req.session.user = user;
-      req.session.token = token;
+    if (!req.session) {
+      req.session = {};
     }
+    req.session.user = user;
+    req.session.token = token;
+    console.log(req.session);
     res.json({ token });
   })(req, res, next)
 });
