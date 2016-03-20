@@ -11,13 +11,13 @@ module.exports[404] = function pageNotFound(req, res) {
     status: statusCode
   };
 
-  res.status(result.status);
-  res.render(viewFilePath, {}, function (err, html) {
-    if (err) {
-      return res.status(result.status).json(result);
-    }
-
-    res.send(html);
-  });
+  res.status(result.status).send();
+  // res.render(viewFilePath, {}, function(err, html) {
+  //   if (err) {
+  //     return res.status(result.status).json(result);
+  //   }
+  //
+  //   res.send(html);
+  // });
 };
 //# sourceMappingURL=index.js.map

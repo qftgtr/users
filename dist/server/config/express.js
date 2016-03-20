@@ -104,6 +104,7 @@ exports['default'] = function (app) {
   // We need to enable sessions for passport-twitter because it's an
   // oauth 1.0 strategy, and Lusca depends on sessions
   app.use((0, _expressSession2['default'])({
+    name: 'sid',
     secret: _environment2['default'].secrets.session,
     saveUninitialized: true,
     resave: false,
@@ -115,18 +116,18 @@ exports['default'] = function (app) {
    * https://github.com/krakenjs/lusca
    */
   if ('test' !== env) {
-    app.use((0, _lusca2['default'])({
-      csrf: {
-        angular: true
-      },
-      xframe: 'SAMEORIGIN',
-      hsts: {
-        maxAge: 31536000, //1 year, in seconds
-        includeSubDomains: true,
-        preload: true
-      },
-      xssProtection: true
-    }));
+    // app.use(lusca({
+    //   csrf: {
+    //     angular: true
+    //   },
+    //   xframe: 'SAMEORIGIN',
+    //   hsts: {
+    //     maxAge: 31536000, //1 year, in seconds
+    //     includeSubDomains: true,
+    //     preload: true
+    //   },
+    //   xssProtection: true
+    // }));
   }
 
   app.set('appPath', _path2['default'].join(_environment2['default'].root, 'client'));

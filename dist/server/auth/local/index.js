@@ -28,7 +28,16 @@ router.post('/', function (req, res, next) {
       return res.status(404).json({ message: 'Something went wrong, please try again.' });
     }
 
+    user.password = undefined;
+    user.salt = undefined;
     var token = (0, _authService.signToken)(user._id, user.role);
+
+    if (!req.session) {
+      req.session = {};
+    }
+    req.session.user = user;
+    req.session.token = token;
+    console.log(req.session);
     res.json({ token: token });
   })(req, res, next);
 });
