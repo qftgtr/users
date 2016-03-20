@@ -22,6 +22,8 @@ export function isAuthenticated() {
       // allow access_token to be passed through query parameter as well
       if (req.query && req.query.hasOwnProperty('access_token')) {
         req.headers.authorization = 'Bearer ' + req.query.access_token;
+      } else if (req.session && req.session.token) {
+        req.headers.authorization = 'Bearer ' + req.session.token;
       }
       validateJwt(req, res, next);
     })
